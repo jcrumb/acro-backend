@@ -2,4 +2,4 @@ from flask_restful import Resource
 
 class RootResource(Resource):
 	def get(self):
-		return {'message': 'Hello Jay!'}
+		return {'message': 'Hello Sean!'}

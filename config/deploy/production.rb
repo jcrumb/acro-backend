@@ -43,8 +43,7 @@ role :api, %w{api@getacro.com}
 # --------------
  set :ssh_options, {
    keys: %w(/home/jay/.ssh/id_rsa),
-   forward_agent: false,
-   auth_methods: %w(password)
+   forward_agent: false
  }
 
 # The server-based syntax can be used to override options:

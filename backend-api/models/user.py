@@ -35,3 +35,12 @@ class User(db.Model):
 			return False, None
 		else:
 			return True, user
+
+	@staticmethod
+	def with_token(token):
+		user = db.session.query(User).filter(User.user_secret == token).one_or_none()
+
+		if user is None:
+			return False, None
+		else:
+			return True, user

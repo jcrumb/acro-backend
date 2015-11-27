@@ -1,5 +1,4 @@
 from flask_oauthlib.client import OAuth
-from flask import session
 from os import environ as config
 
 oauth = OAuth()

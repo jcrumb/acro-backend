@@ -1,0 +1,37 @@
+from models import db
+from flask_restful import fields, marshal
+
+user_fields = {
+	'email': fields.String,
+	'firstName': fields.String(attribute='first_name'),
+	'lastName': fields.String(attribute='last_name'),
+	'picture': fields.String(attribute='profile_picture_url'),
+	'token': fields.String(attribute='user_secret')
+}
+
+class User(db.Model):
+	__tablename__       = 'users'
+	email               = db.Column(db.String(), primary_key=True)
+	first_name          = db.Column(db.String)
+	last_name           = db.Column(db.String)
+	user_secret         = db.Column(db.String)
+	profile_picture_url = db.Column(db.String)
+
+	def __init__(self, email, first, last, picture, secret):
+		self.email               = email
+		self.first_name          = first
+		self.last_name           = last
+		self.profile_picture_url = picture
+		self.user_secret         = secret
+
+	def marshal(self):
+		return marshal(self, user_fields)
+
+	@staticmethod
+	def exists(email):
+		user = db.session.query(User).filter(User.email == email).one_or_none()
+
+		if user is None:
+			return False, None
+		else:
+			return True, user

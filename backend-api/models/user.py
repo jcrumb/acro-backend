@@ -11,11 +11,12 @@ user_fields = {
 
 class User(db.Model):
 	__tablename__       = 'users'
-	email               = db.Column(db.String(), primary_key=True)
+	email               = db.Column(db.String, primary_key=True)
 	first_name          = db.Column(db.String)
 	last_name           = db.Column(db.String)
 	user_secret         = db.Column(db.String)
 	profile_picture_url = db.Column(db.String)
+	contacts            = db.relationship("UserContact")
 
 	def __init__(self, email, first, last, picture, secret):
 		self.email               = email
@@ -44,3 +45,10 @@ class User(db.Model):
 			return False, None
 		else:
 			return True, user
+
+	@staticmethod
+	def with_email(email):
+		exists, user = User.exists(email)
+		if exists == False:
+			raise Exception('No user found')
+		return user

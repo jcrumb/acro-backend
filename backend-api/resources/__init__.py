@@ -30,7 +30,10 @@ def with_auth(func):
 			return {'error': 'please check bearer token'}, 401
 
 		exists, user = User.with_token(auth[1])
-		if exists is None:
+		if exists is False:
+			return {'error': 'please check bearer token'}, 401
+
+		if user.user_secret != auth[1] or user.email != request.headers.get('x-user'):
 			return {'error': 'please check bearer token'}, 401
 		
 		return func(*args, **kwargs)

@@ -6,6 +6,7 @@ from os import environ as config
 from resources import oauth
 from resources.oauthproviders import GoogleLoginResource, GoogleAuthResource
 from resources.user import UserResource
+from resources.usercontact import UserContactResource
 
 from models import db
 
@@ -24,6 +25,7 @@ api.add_resource(GoogleLoginResource, '/login/google')
 api.add_resource(GoogleAuthResource, '/login/google/authorized', endpoint='google_authed')
 
 api.add_resource(UserResource, '/users/<email>')
+api.add_resource(UserContactResource, '/users/<email>/contacts')
 
 
 if __name__ == '__main__':

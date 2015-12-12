@@ -12,3 +12,5 @@ backend_api:
         - postgres
     env_file: /etc/acro-api/api.env
     restart: always
+    domainname: getacro.com
+    hostname: api

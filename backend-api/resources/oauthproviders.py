@@ -13,7 +13,7 @@ api = Api
 
 class GoogleLoginResource(Resource):
 	def get(self):
-		return google.authorize(callback=api.url_for(api(current_app), GoogleAuthResource, _external=True))
+		return google.authorize(callback='{0}/login/google/authorized'.format(os.environ['API_BASE_URL']))
 
 class GoogleAuthResource(Resource):
 	def get(self):

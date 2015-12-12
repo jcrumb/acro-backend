@@ -19,7 +19,6 @@ app.secret_key = config['API_SECRET_KEY']
 
 app.config['SQLALCHEMY_DATABASE_URI']        = config['POSTGRES_CONN']
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
 oauth.init_app(app)
 db.init_app(app)
 

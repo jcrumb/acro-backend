@@ -8,7 +8,9 @@ from resources.oauthproviders import GoogleLoginResource, GoogleAuthResource
 from resources.user import UserResource
 from resources.usercontact import UserContactResource
 
-from models import db
+from models import db, create_schema
+
+create_schema()
 
 app = Flask(__name__)
 api = Api(app)
@@ -29,4 +31,4 @@ api.add_resource(UserContactResource, '/users/<email>/contacts')
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    app.run(debug=True, port=5000, host='0.0.0.0')

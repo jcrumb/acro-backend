@@ -1,0 +1,12 @@
+postgres:
+    container_name: postgres-host
+    build: .
+    dockerfile: Dockerfile-postgres
+    volumes:
+        - /data/postgres:/data
+    env_file: /etc/acro-api/postgres.env
+backend_api:
+    build: .
+    links:
+        - postgres
+    env_file: /etc/acro-api/api.env

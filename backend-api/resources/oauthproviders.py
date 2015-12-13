@@ -4,6 +4,7 @@ from flask import session, request
 from resources import google
 
 from models.user import User
+from models.trackinginfo import TrackingInfo
 from models import db
 
 import binascii
@@ -33,7 +34,12 @@ class GoogleAuthResource(Resource):
 			d = userinfo.data
 			user = User(d['email'], d['given_name'], d['family_name'], d['picture'], self.generate_token())
 			db.session.add(user)
+
+			tracking_info = TrackingInfo.generate_tracking_info(d['email'])
+			db.session.add(tracking_info)
+			
 			db.session.commit()
+
 			return user.marshal()
 
 	def generate_token(self):

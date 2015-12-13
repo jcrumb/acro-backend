@@ -8,6 +8,7 @@ from resources.oauthproviders import GoogleLoginResource, GoogleAuthResource
 from resources.user import UserResource, UserLocationHistoryResource
 from resources.usercontact import UserContactResource
 from resources.locationupdate import LocationUpdateResource
+from resources.tracking import TrackingInfoResource
 
 from models import db, create_schema
 import logging
@@ -32,6 +33,7 @@ api.add_resource(GoogleAuthResource, '/login/google/authorized', endpoint='googl
 api.add_resource(UserResource, '/users/<email>')
 api.add_resource(UserContactResource, '/users/<email>/contacts')
 api.add_resource(UserLocationHistoryResource, '/users/<email>/locationhistory')
+api.add_resource(TrackingInfoResource, '/users/<email>/trackinginfo')
 
 api.add_resource(LocationUpdateResource, '/heartbeat')
 

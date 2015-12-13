@@ -25,6 +25,9 @@ class User(db.Model):
 		self.profile_picture_url = picture
 		self.user_secret         = secret
 
+	def __repr__(self):
+		return 'First: {0} Last: {1} Email: {2}'.format(self.first_name, self.last_name, self.email)
+
 	def marshal(self):
 		return marshal(self, user_fields)
 

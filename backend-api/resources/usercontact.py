@@ -6,6 +6,7 @@ from flask_restful import marshal
 from models.user import User
 from models import db
 from sqlalchemy.exc import IntegrityError
+import logging
 
 class UserContactResource(Resource):
 	method_decorators = [with_auth]
@@ -22,11 +23,13 @@ class UserContactResource(Resource):
 		parser.add_argument('phoneNumber', type=str)
 
 		args = parser.parse_args(strict=True)
+		logging.info(args)
 		contact = UserContact(email, args['firstName'], args['lastName'], args['phoneNumber'])
 		db.session.add(contact)
 		try:
 			db.session.commit()
 		except IntegrityError as e:
+			logging.info(e)
 			return {'error': 'Contact already exists for user'}, 400
 
 		return contact.marshal(), 201
@@ -36,7 +39,7 @@ class UserContactResource(Resource):
 		parser.add_argument('phoneNumber', type=str)
 
 		args = parser.parse_args(strict=True)
-
+		logging.info('Deleting {0} for user {1}'.format(args['phoneNumber'], email))
 		try:
 			contact = (db.session.query(UserContact)
 			.filter(UserContact.phone_number == args['phoneNumber'])

@@ -1,5 +1,5 @@
 from flask_restful import Resource, Api
-from flask import session, current_app, request
+from flask import session, request
 
 from resources import google
 

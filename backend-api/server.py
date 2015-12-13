@@ -9,6 +9,9 @@ from resources.user import UserResource
 from resources.usercontact import UserContactResource
 
 from models import db, create_schema
+import logging
+
+logging.basicConfig(format='%(message)s', level=logging.INFO)
 
 create_schema()
 

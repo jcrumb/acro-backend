@@ -6,6 +6,7 @@ postgres:
         - /data/postgres:/data
     env_file: /etc/acro-api/postgres.env
     restart: always
+    log_driver: "fluentd"
 backend_api:
     build: .
     links:
@@ -14,3 +15,4 @@ backend_api:
     restart: always
     domainname: getacro.com
     hostname: api
+    log_driver: "fluentd"

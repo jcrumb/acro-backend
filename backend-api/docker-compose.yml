@@ -18,6 +18,7 @@ backend_api:
     build: .
     links:
         - postgres
+        - redis
     env_file: /etc/acro-api/api.env
     restart: always
     domainname: getacro.com

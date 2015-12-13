@@ -2,6 +2,11 @@ from flask_oauthlib.client import OAuth
 from flask import request
 from models.user import User
 from os import environ as config
+import redis
+from twilio.rest import TwilioRestClient
+
+twilio_client = TwilioRestClient(config['TWILIO_ACCOUNT_SID'], config['TWILIO_AUTH_TOKEN'])
+cache         = redis.StrictRedis(host=config['REDIS_HOST'], port=int(config['REDIS_PORT']), db=0)
 
 oauth = OAuth()
 

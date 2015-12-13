@@ -36,6 +36,9 @@ class TrackingInfo(db.Model):
 	def marshal(self):
 		return marshal(self, tracking_fields)
 
+	def tracking_url(self):
+		return UrlGenerator().format(self.tracking_id)
+
 	@staticmethod
 	def generate_tracking_info(email):
 		tracking_id = generate_tracking_id()

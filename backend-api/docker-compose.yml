@@ -7,6 +7,13 @@ postgres:
     env_file: /etc/acro-api/postgres.env
     restart: always
     log_driver: "fluentd"
+redis:
+    container_name: redis-host
+    image: redis
+    volumes:
+        - /data/redis:/data
+    restart: always
+    log_driver: "fluentd"
 backend_api:
     build: .
     links:

@@ -8,7 +8,7 @@ from resources.oauthproviders import GoogleLoginResource, GoogleAuthResource
 from resources.user import UserResource, UserLocationHistoryResource
 from resources.usercontact import UserContactResource
 from resources.locationupdate import LocationUpdateResource
-from resources.tracking import TrackingInfoResource
+from resources.tracking import TrackingInfoResource, TrackingBeginResource, TrackingEndResource, TrackingAlertResource
 
 from models import db, create_schema
 import logging
@@ -35,7 +35,10 @@ api.add_resource(UserContactResource, '/users/<email>/contacts')
 api.add_resource(UserLocationHistoryResource, '/users/<email>/locationhistory')
 api.add_resource(TrackingInfoResource, '/users/<email>/trackinginfo')
 
-api.add_resource(LocationUpdateResource, '/heartbeat')
+api.add_resource(TrackingBeginResource, '/tracking/begin')
+api.add_resource(LocationUpdateResource, '/tracking/heartbeat')
+api.add_resource(TrackingAlertResource, '/tracking/alert')
+api.add_resource(TrackingEndResource, '/tracking/end')
 
 
 if __name__ == '__main__':

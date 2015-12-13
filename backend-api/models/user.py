@@ -18,6 +18,7 @@ class User(db.Model):
 	profile_picture_url = db.Column(db.String)
 	contacts            = db.relationship('UserContact')
 	location_history    = db.relationship('UserLocation', order_by='desc(UserLocation.time)')
+	tracking_info       = db.relationship('TrackingInfo', uselist=False)
 
 	def __init__(self, email, first, last, picture, secret):
 		self.email               = email

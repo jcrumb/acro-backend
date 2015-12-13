@@ -16,7 +16,8 @@ class User(db.Model):
 	last_name           = db.Column(db.String)
 	user_secret         = db.Column(db.String)
 	profile_picture_url = db.Column(db.String)
-	contacts            = db.relationship("UserContact")
+	contacts            = db.relationship('UserContact')
+	location_history    = db.relationship('UserLocation', order_by='desc(UserLocation.time)')
 
 	def __init__(self, email, first, last, picture, secret):
 		self.email               = email

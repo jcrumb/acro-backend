@@ -5,8 +5,9 @@ from os import environ as config
 
 from resources import oauth
 from resources.oauthproviders import GoogleLoginResource, GoogleAuthResource
-from resources.user import UserResource
+from resources.user import UserResource, UserLocationHistoryResource
 from resources.usercontact import UserContactResource
+from resources.locationupdate import LocationUpdateResource
 
 from models import db, create_schema
 import logging
@@ -30,6 +31,9 @@ api.add_resource(GoogleAuthResource, '/login/google/authorized', endpoint='googl
 
 api.add_resource(UserResource, '/users/<email>')
 api.add_resource(UserContactResource, '/users/<email>/contacts')
+api.add_resource(UserLocationHistoryResource, '/users/<email>/locationhistory')
+
+api.add_resource(LocationUpdateResource, '/heartbeat')
 
 
 if __name__ == '__main__':

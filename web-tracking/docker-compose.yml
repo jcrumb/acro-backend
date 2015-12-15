@@ -1,0 +1,7 @@
+live_tracking:
+    build: .
+    env_file: /etc/acro-track/track.env
+    restart: always
+    log_driver: "fluentd"
+    external_links:
+        - redis-host

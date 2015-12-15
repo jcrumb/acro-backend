@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" style="height: 100%;">
+<head>
+	<script id="data" type="application/json">{ "trackingId": "{{ tracking_id }}" }</script>
+	<script type="text/javascript" src="/static/js/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="/static/js/acrotrack.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQgokNKI5uCcLSRUQyKihV_euSUiJfw7E"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<meta charset="UTF-8">
+	<title>Acro Live Tracking</title>
+</head>
+<body onload="showModal()" style="height: 100%;">
+	<div class="modal fade" id="pinModal" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Please enter PIN</h4>
+				</div>
+
+				<div class="modal-body">
+					<input type="text" id="pinText" placeholder="PIN">
+					<button type="button" class="btn btn-primary" id="submitButton" onclick="verifyPIN()">Submit</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container-fluid row" style="height: 100%;">
+		<div class="col-md-4" id="info">
+		</div>
+		<div class="col-md-8" style="height: 100%;">
+			<div id="map" style="height: 100%;"></div>
+		</div>
+
+	</div>
+</body>
+</html>

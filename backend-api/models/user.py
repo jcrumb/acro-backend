@@ -12,6 +12,7 @@ user_fields = {
 class User(db.Model):
 	__tablename__       = 'users'
 	email               = db.Column(db.String, primary_key=True)
+	google_id           = db.Column(db.String)
 	first_name          = db.Column(db.String)
 	last_name           = db.Column(db.String)
 	user_secret         = db.Column(db.String)
@@ -20,7 +21,8 @@ class User(db.Model):
 	location_history    = db.relationship('UserLocation', order_by='desc(UserLocation.time)')
 	tracking_info       = db.relationship('TrackingInfo', uselist=False)
 
-	def __init__(self, email, first, last, picture, secret):
+	def __init__(self, gid, email, first, last, picture, secret):
+		self.google_id           = gid
 		self.email               = email
 		self.first_name          = first
 		self.last_name           = last
@@ -56,4 +58,10 @@ class User(db.Model):
 		exists, user = User.exists(email)
 		if exists == False:
 			raise Exception('No user found')
+		return user
+
+	@staticmethod
+	def with_gid(gid):
+		user = db.session.query(User).filter(User.google_id == gid).one_or_none()
+
 		return user

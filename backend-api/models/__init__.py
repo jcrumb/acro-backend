@@ -8,6 +8,7 @@ def create_schema():
 	from models.user import User
 	from models.usercontact import UserContact
 	from models.userlocation import UserLocation
+	from models.trackinginfo import TrackingInfo
 	
 	app = Flask(__name__)
 	app.config['SQLALCHEMY_DATABASE_URI'] = config['POSTGRES_CONN']

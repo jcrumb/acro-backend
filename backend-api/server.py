@@ -4,7 +4,7 @@ from flask_restful import Api
 from os import environ as config
 
 from resources import oauth
-from resources.oauthproviders import GoogleLoginResource, GoogleAuthResource
+from resources.oauthproviders import GoogleLoginResource, GoogleAuthResource, GoogleTokenVerifier
 from resources.user import UserResource, UserLocationHistoryResource
 from resources.usercontact import UserContactResource
 from resources.locationupdate import LocationUpdateResource
@@ -29,7 +29,7 @@ db.init_app(app)
 
 api.add_resource(GoogleLoginResource, '/login/google')
 api.add_resource(GoogleAuthResource, '/login/google/authorized', endpoint='google_authed')
-
+api.add_resource(GoogleTokenVerifier, '/login/google/verifytoken')
 api.add_resource(UserResource, '/users/<email>')
 api.add_resource(UserContactResource, '/users/<email>/contacts')
 api.add_resource(UserLocationHistoryResource, '/users/<email>/locationhistory')

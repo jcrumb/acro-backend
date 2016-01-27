@@ -25,10 +25,10 @@ class TrackingBeginResource(Resource):
 		parser = reqparse.RequestParser()
 		parser.add_argument('location', type=str)
 
-		args           = parser.parse_args()
+		args           = parser.parse_args(strict=True)
 		tracking_status = {}
 
-		user = User.with_email(request.headers.get('x-user'))
+		user = User.with_email(request.headers.get('X-User'))
 
 		tracking_status['tracking_pin'] = user.tracking_info.tracking_pin
 		tracking_status['location']     = args['location']
@@ -49,7 +49,7 @@ class TrackingEndResource(Resource):
 	method_decorators = [with_auth]
 
 	def get(self):
-		user = User.with_email(request.headers.get('x-user'))
+		user = User.with_email(request.headers.get('X-User'))
 
 		cache.delete('tracking:' + user.tracking_info.tracking_id)
 		return {'message': 'tracking stopped'}
@@ -62,7 +62,7 @@ class TrackingAlertResource(Resource):
 		parser.add_argument('location', type=str, required=False)
 
 		args = parser.parse_args(strict=True)
-		user = User.with_email(request.headers.get('x-user'))
+		user = User.with_email(request.headers.get('X-User'))
 
 		tracking_status = cache.get('tracking:'+user.tracking_info.tracking_id)
 		ts = pickle.loads(tracking_status)

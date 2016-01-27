@@ -26,6 +26,7 @@ google = oauth.remote_app(
 
 def with_auth(func):
 	def auth_wrapper(*args, **kwargs):
+
 		auth = request.headers.get('Authorization')
 		if auth is None:
 			return {'error': 'please check bearer token'}, 401
@@ -38,7 +39,7 @@ def with_auth(func):
 		if exists is False:
 			return {'error': 'please check bearer token'}, 401
 
-		if user.user_secret != auth[1] or user.email != request.headers.get('x-user'):
+		if user.user_secret != auth[1] or user.email != request.headers.get('X-User'):
 			return {'error': 'please check bearer token'}, 401
 		
 		return func(*args, **kwargs)

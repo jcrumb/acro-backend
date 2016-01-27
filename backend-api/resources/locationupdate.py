@@ -20,7 +20,7 @@ class LocationUpdateResource(Resource):
 
 		args = parser.parse_args(strict=True)
 		logging.info(args)
-		email = request.headers.get('x-user')
+		email = request.headers.get('X-User')
 
 		update = UserLocation(args['location'], datetime.utcnow(), email)
 		try:

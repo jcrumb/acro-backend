@@ -36,7 +36,7 @@ class UserContactResource(Resource):
 
 	def delete(self, email):
 		parser = reqparse.RequestParser()
-		parser.add_argument('phoneNumber', type=str)
+		parser.add_argument('x-phone-number', type=str, required=True, location='headers', dest='phoneNumber')
 
 		args = parser.parse_args(strict=True)
 		logging.info('Deleting {0} for user {1}'.format(args['phoneNumber'], email))
